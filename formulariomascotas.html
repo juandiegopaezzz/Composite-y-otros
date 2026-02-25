@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Mascotas</title>
+</head>
+<body>
+
+    <h2>Formulario de Mascotas</h2>
+
+    <form>
+        <label>Tipo de mascota:</label><br>
+        <input type="text" id="tipoMascota"><br><br>
+
+        <label>Nombre de la mascota:</label><br>
+        <input type="text" id="nombreMascota"><br><br>
+        
+        <label>Edad de la mascota:</label><br>
+        <input type="text" id="edadMascota"><br><br>
+
+        <button type="button" onclick="mostrarDatos()">
+            Enviar
+        </button>
+    </form>
+
+    <hr>
+
+    <h3>Datos ingresados:</h3>
+    <div id="resultado"></div>
+
+    <script>
+        function mostrarDatos() {
+            let tipo = document.getElementById("tipoMascota").value;
+            let nombre = document.getElementById("nombreMascota").value;
+            let edad = document.getElementById("edadMascota").value;
+
+            document.getElementById("resultado").innerHTML =
+                "<p><strong>Tipo:</strong> " + tipo + "</p>" +
+                "<p><strong>Nombre:</strong> " + nombre + "</p>"+
+                "<p><strong>Edad</strong> " + edad + "</p>";
+        }
+    </script>
+
+</body>
+</html>
