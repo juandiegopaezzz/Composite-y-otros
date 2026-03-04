@@ -1,5 +1,7 @@
 package Salidas;
 
+import model.Mascota;
+
 public interface OutputMascota {
-    void mostrarMascota(String tipo, String nombre,double edad);
+    void mostrarMascota(Mascota mascota);
 }

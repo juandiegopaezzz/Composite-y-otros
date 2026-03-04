@@ -1,12 +1,16 @@
 package Salidas;
 
 import javax.swing.JOptionPane;
+import model.Mascota;
 
 public class JOptionOutputMascota implements OutputMascota {
 
     @Override
-    public void mostrarMascota(String tipo, String nombre, double edad) {
+    public void mostrarMascota(Mascota mascota) {
         JOptionPane.showMessageDialog(null,
-            "Mascota: " + tipo + "\nNombre: " + nombre + "\nEdad: " +edad );
+            "Tipo: " + mascota.getTipo() +
+            "\nNombre: " + mascota.getNombre() +
+            "\nEdad: " + mascota.getEdad()
+        );
     }
 }

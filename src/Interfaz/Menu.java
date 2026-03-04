@@ -4,11 +4,14 @@ import adapter.Edad;
 import adapter.EdadAdapter;
 import Entradas.InputMascota;
 import Salidas.OutputMascota;
+import builder.MascotaBuilder;
+import builder.MascotaConcretaBuilder;
 import factory.ConsoleMascotaFactory;
 import factory.JOptionMascotaFactory;
 import factory.MascotaFactory;
 import factory.WebMascotaFactory;
 import javax.swing.JOptionPane;
+import model.Mascota;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -32,20 +35,28 @@ public class Menu extends javax.swing.JFrame {
         
     }
     
+
     private void ejecutarProceso(MascotaFactory factory) {
+        InputMascota input = factory.crearInput();
+        OutputMascota output = factory.crearOutput();
 
-    InputMascota input = factory.crearInput();
-    OutputMascota output = factory.crearOutput();
+        MascotaBuilder builder = new MascotaConcretaBuilder();
 
-    String tipo = input.pedirTipoMascota();
-    String nombre = input.pedirNombreMascota();
+        builder.buildTipo(input.pedirTipoMascota());
+        builder.buildNombre(input.pedirNombreMascota());
 
-    String edadTexto = input.pedriEdadMascota();
+        double edad = new EdadAdapter(
+            input.pedriEdadMascota()
+        ).getEdad();
 
-    Edad edad = new EdadAdapter(edadTexto);
+        builder.buildEdad(edad);
 
-    output.mostrarMascota(tipo, nombre, edad.getEdad());
-}
+        Mascota mascota = builder.getMascota();
+
+        Mascota copia = mascota.clone();
+
+        output.mostrarMascota(copia);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
